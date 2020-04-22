@@ -30,8 +30,4 @@ out/
 
 ### VS Code ###
 .vscode/
-src/main/java/com/tistory/fonercis/admin/controller/PostController.java
-src/main/resources/static/
-src/main/resources/templates/
 
-*.properties
