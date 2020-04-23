@@ -31,7 +31,6 @@ public class ItemRepositoryTest extends AdminApplicationTests {
         Long id = 1L;
 
         Optional<Item> item = itemRepository.findById(id);
-
         assertTrue(item.isPresent());
     }
 }
