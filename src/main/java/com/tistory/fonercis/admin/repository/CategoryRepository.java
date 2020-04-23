@@ -1,15 +1,14 @@
 package com.tistory.fonercis.admin.repository;
 
-import com.tistory.fonercis.admin.model.entity.User;
+import com.tistory.fonercis.admin.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    User findFirstByPhoneNumberOrderByIdDesc(String phoneNumber);
-
+    Optional<Category> findByType(String type);
 
 }
