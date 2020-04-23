@@ -3,6 +3,7 @@ package com.tistory.fonercis.admin.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"orderDetailList", "partner"})
 public class Item {
 
     @Id
@@ -42,7 +44,14 @@ public class Item {
 
     private String updatedBy;
 
-    private Long partnerId;
+    // Item N : 1 Partner
+    @ManyToOne
+    private Partner partner;
+
+    // Item 1 : N OrderDetail
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;
+
 //    // LAZY = 지연로딩(연관관계의 get메서드를 호출 하지 않는 이상 select하지 않음) - 1:N or OneToMany의 다건에 추천,
 //    // EAGER = 즉시로딩(즉시 모든 연관관계 로딩) - 1:1 or ManyToOne 등의 한건만 존재할 때 사용 추천
 //
