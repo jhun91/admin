@@ -1,6 +1,7 @@
 package com.tistory.fonercis.admin.repository;
 
 import com.tistory.fonercis.admin.AdminApplicationTests;
+import com.tistory.fonercis.admin.model.entity.Item;
 import com.tistory.fonercis.admin.model.entity.User;
 
 import org.junit.jupiter.api.Test;
@@ -32,15 +33,19 @@ public class UserRepositoryTest extends AdminApplicationTests {
     }
 
     @Test
+    @Transactional
     public void read() {
-        Optional<User> user = userRepository.findById(2L);
+
+        Optional<User> user = userRepository.findById(1L);
 
         user.ifPresent(selectUser -> {
-            System.out.println("user : " + selectUser);
-            System.out.println("email : " + selectUser.getEmail());
+
+            selectUser.getOrderDetailList().stream().forEach(detail -> {
+                Item item = detail.getItem();
+                System.out.println(item);
+            });
+
         });
-
-
     }
 
     @Test
