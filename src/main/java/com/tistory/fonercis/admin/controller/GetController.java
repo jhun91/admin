@@ -1,6 +1,7 @@
 package com.tistory.fonercis.admin.controller;
 
 import com.tistory.fonercis.admin.model.SearchParam;
+import com.tistory.fonercis.admin.model.network.Header;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,5 +31,11 @@ public class GetController {
         System.out.println(searchParam.getPage());
 
         return searchParam;
+    }
+
+    @GetMapping("/header")
+    public Header getHeader() {
+
+        return Header.builder().resultCode("OK").description("OK").build();
     }
 }
