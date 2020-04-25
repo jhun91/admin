@@ -46,7 +46,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
     public Header<UserApiResponse> read(Long id) {
         // id -> repository getOne, getById
         return baseRepository.findById(id)
-                .map(user -> response(user))
+                .map(this::response)
                 .orElseGet(
                         () -> Header.ERROR("데이터 없음")
                 );
@@ -75,7 +75,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
             // 4. userApiResponse
         })
         .map(user -> baseRepository.save(user))     //user
-        .map(updateUser -> response(updateUser))    //userApiResponse
+        .map(this::response)    //userApiResponse
         .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 

@@ -39,7 +39,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
     @Override
     public Header<ItemApiResponse> read(Long id) {
         return baseRepository.findById(id)
-                .map(item -> response(item))
+                .map(this::response)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
@@ -62,7 +62,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
                     return entityItem;
                 })
                 .map(newEntityItem -> baseRepository.save(newEntityItem))
-                .map(item -> response(item))
+                .map(this::response)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
